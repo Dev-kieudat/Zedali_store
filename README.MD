@@ -25,7 +25,7 @@ Sau khi chỉnh sửa, kiểm tra trạng thái repository để xem những gì
 ```
 ### Thêm thay đổi vào staging
 ```bash
-git add .
+    git add .
 ```
 ### Tạo commit
 ```bash
