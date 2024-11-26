@@ -15,18 +15,6 @@ match ($api) {
     'detail' => $clientController->detail_product($id),
     'category' => $clientController->categorry_product($id),
     'product' => $clientController->all_product_main(),
-    'about' => [
-        include "view/client/base/header.php",
-        include "view/client/about.php"
-    ],
-    'feedback' => [
-        include "view/client/base/header.php",
-        include "view/client/feedback.php"
-    ],
-    'guide' => [
-        include "view/client/base/header.php",
-        include "view/client/guide.php"
-    ],
     'register' => [
         $clientController->register(),
     ],
@@ -38,6 +26,18 @@ match ($api) {
     ],
     'information' => [
         $clientController->information(),
+    ],
+        'about' => [
+        include "view/client/base/header.php",
+        include "view/client/about.php"
+    ],
+    'feedback' => [
+        include "view/client/base/header.php",
+        include "view/client/feedback.php"
+    ],
+    'guide' => [
+        include "view/client/base/header.php",
+        include "view/client/guide.php"
     ],
     default => $clientController->all_category_on_main(),
 };
