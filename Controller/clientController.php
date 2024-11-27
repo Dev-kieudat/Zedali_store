@@ -136,4 +136,7 @@ public function information(){
     include "view/client/base/header.php";
     include "view/client/information.php";
 }
+public function add_to_cart(){
+    
+}
 }

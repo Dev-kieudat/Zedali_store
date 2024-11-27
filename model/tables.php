@@ -24,3 +24,14 @@ class Users{
     public $role;
     public $status;
 }
+class Carts {
+    public $cart_id;
+    public $user_id;
+    public $product_id;
+    public $image_url;
+    public $name;
+    public $price;
+    public $quantity;
+    public $created_at;
+    public $updated_at;
+}

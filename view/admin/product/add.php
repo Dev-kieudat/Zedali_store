@@ -10,9 +10,13 @@
                     <label for="name" style="margin-bottom: 10px; color: #555;">Danh mục Sản Phẩm:</label>
                     <select name="id_cate" id="id_cate" style="padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;" required>
                         <option value="0">Chọn danh mục</option>
-                        <?php foreach ($add_id_cate as $values): ?>
+                        <?php 
+                        $key_type = $_GET['product_type'];
+                        foreach ($add_id_cate as $values): 
+                            if($values->category_type == $key_type):?>
                             <option value="<?=$values->category_id ?>"><?=$values->category_name ?></option>
-                        <?php endforeach; ?>
+                        <?php endif;
+                    endforeach; ?>
                     </select>
                     <label for="name" style="margin-bottom: 10px; color: #555;">Tên Sản Phẩm:</label>
                     <input type="text" id="name" name="name_product" style="padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;" required>

@@ -21,6 +21,7 @@ match ($api) {
     "list_user" => $adminController->all_user(),
     "delete_user" => $adminController->delete_user($id),
     "update_user" => $adminController->update_user($id),
+    "type" => include "product/type.php",
     default => $adminController->all_category(),
 };
 include "footer.php";

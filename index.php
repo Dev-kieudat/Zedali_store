@@ -27,7 +27,11 @@ match ($api) {
     'information' => [
         $clientController->information(),
     ],
-        'about' => [
+    'cart' => [
+        include "view/client/base/header.php",
+        include "view/client/cart.php"
+    ],
+    'about' => [
         include "view/client/base/header.php",
         include "view/client/about.php"
     ],

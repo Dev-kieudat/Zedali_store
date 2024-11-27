@@ -29,7 +29,7 @@
                     <a href="index.php?API=add_category">
                         <li>Thêm Danh mục</li>
                     </a>
-                    <a href="index.php?API=add_product">
+                    <a href="index.php?API=type">
                         <li>Thêm Hàng hóa</li>
                     </a>
                 </ul>

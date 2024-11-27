@@ -30,7 +30,7 @@
                 <form action=""><input class="search-bar" type="search" placeholder="TÌM KIẾM..." name="" id="" required><img class="search-logo" src="images/search-icon.png" alt=""></form>
             </div>
             <div class="user-cart">
-                <a href="#"><img class="cart" src="images/cart-logo.png" alt=""></a>
+                <a href="index.php?API=cart"><img class="cart" src="images/cart-logo.png" alt=""></a>
                 <img class="user" src="images/user.png" alt="">
             </div>
             <div class="management-user">
