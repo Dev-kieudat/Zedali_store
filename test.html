@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="product-detail-container">
+        <div class="product-main">
+            <div class="product-image">
+                <img src="path-to-your-image.jpg" alt="Áo sơ mi - A5240043D">
+            </div>
+            <div class="product-info">
+                <h1 class="product-title">Áo sơ mi - A5240043D</h1>
+                <p class="product-code">Mã SP: 2</p>
+                <p class="product-price">Giá: 620.000 VND</p>
+                <div class="product-sizes">
+                    <span>Kích cỡ:</span>
+                    <label><input type="radio" name="size" value="2XL"> 2XL</label>
+                    <label><input type="radio" name="size" value="3XL"> 3XL</label>
+                </div>
+                <form action="index.php?act=addToCart" method="post">
+                    <button type="submit" class="add-to-cart-btn">Thêm vào giỏ hàng</button>
+                </form>
+                <p class="product-description">Áo sơ mi đẹp giá tốt</p>
+            </div>
+        </div>
+        <div class="similar-products">
+            <h2>Sản phẩm tương tự</h2>
+            <div class="similar-product">
+                <img src="path-to-your-image.jpg" alt="Áo sơ mi - A5240042">
+                <p>Áo sơ mi - A5240042</p>
+                <p>Giá: 620.000 VND</p>
+            </div>
+            <div class="similar-product">
+                <img src="path-to-your-image.jpg" alt="Áo sơ mi - A5240041">
+                <p>Áo sơ mi - A5240041</p>
+                <p>Giá: 620.000 VND</p>
+            </div>
+            <div class="similar-product">
+                <img src="path-to-your-image.jpg" alt="Áo sơ mi - A5240040">
+                <p>Áo sơ mi - A5240040</p>
+                <p>Giá: 620.000 VND</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.product-detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-main {
+    display: flex;
+    gap: 20px;
+}
+
+.product-image img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-info {
+    max-width: 500px;
+}
+
+.product-title {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.product-code {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    color: #e74c3c;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.product-sizes span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.product-sizes label {
+    margin-right: 10px;
+}
+
+.product-description {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.add-to-cart-btn {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #219150;
+}
+
+.similar-products {
+    margin-top: 20px;
+}
+
+.similar-products h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.similar-product {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.similar-product img {
+    width: 50px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.similar-product p {
+    margin: 0;
+}
+
+</style>
