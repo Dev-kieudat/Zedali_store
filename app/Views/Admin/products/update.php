@@ -1,4 +1,9 @@
 <?php include_once VIEW . "Admin/base/header.php" ?>
+<style>
+    .main{
+        overflow: auto;
+    }
+</style>
 <div class="main">
     <div class="option">
     </div>
@@ -65,3 +70,4 @@
         </div>
     </div>
 </div>
+<?php include_once VIEW . "Admin/base/footer.php" ?>

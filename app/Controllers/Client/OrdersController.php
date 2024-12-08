@@ -8,7 +8,7 @@ class OrdersController
         $orders = (new Order)->all();
         // Lấy chi tiết từng đơn hàng và thêm vào mảng orders
         foreach ($orders as &$order) {
-            $order['details'] = (new Order)->allOrderDetail($order['id']);
+            $order['details'] = (new Order)->allOrderDetailClient($order['id']);
         }
 
         return view('Client.Orders', compact('categories', 'orders', 'order'));
