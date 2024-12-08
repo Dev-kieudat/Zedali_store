@@ -24,6 +24,39 @@
             </div>
         </div>
     </div>
+    <div class="comments-section">
+        <h3>Bình luận</h3>
+        <?php if (empty($comments)): ?>
+            <p>Chưa có bình luận nào.</p>
+        <?php else: ?>
+            <ul class="comments-list">
+                <?php foreach ($comments as $comment): ?>
+                    <li class="comment-item">
+                        <p><strong><?= htmlspecialchars($comment['user_name']) ?>:</strong> <?= htmlspecialchars($comment['comment']) ?></p>
+                        <p class="comment-date"><?= date('d/m/Y H:i', strtotime($comment['created_at'])) ?></p>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+        
+        <!-- Form gửi bình luận -->
+        <div class="comment-form">
+            <form action="index.php?act=AddComment" method="POST">
+                <input type="hidden" name="product_id" value="<?= $detail['id'] ?>">
+                <?php if(isset($_SESSION['user'])): ?>
+                    <input type="hidden" name="user_name" value="<?= $_SESSION['user']['fullname'] ?>">
+                <?php else: ?>
+                <?php endif; ?>
+                <?php if(isset($_SESSION['user'])) : ?>
+                <div class="form-group">
+                    <label for="comment">Bình luận:</label>
+                    <textarea id="comment" name="comment" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Gửi</button>
+                <?php endif; ?>
+            </form>
+        </div>
+    </div>
     <div class="similar-products">
         <h3>Sản phẩm tương tự</h3>
         <div class="products-container">

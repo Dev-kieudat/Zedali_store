@@ -46,11 +46,13 @@ class CheckOutController
         $orderDetailData = [
             'order_id' => $orderId,
             'product_id' => $id,
+            'product_name' => $cart['name'],
             'price' => $cart['price'],
             'quantity' => $cart['quantity'],
         ];
         (new Order)->createOrderDetail($orderDetailData);
     }
+    
     $this->clearCart();
     $_SESSION['message'] = "alert('Đặt hàng thành công!');";
     header("location: index.php?act=");

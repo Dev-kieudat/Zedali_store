@@ -98,11 +98,6 @@
                 <div class="logo-category">
                     <div><img class="category-logo" src="Assets/images/category_logo.png" alt=""></div>
                     <div class="admin-page-link">
-                        <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] == "admin"): ?>
-                            <a href=" <?= ADMIN_URL ?> ">
-                                <h7>QUẢN TRỊ</h7>
-                            </a>
-                        <?php endif; ?>
                     </div>
                 </div>
             </div>

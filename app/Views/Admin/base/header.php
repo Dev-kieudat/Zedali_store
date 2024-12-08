@@ -37,8 +37,7 @@
             <li>
                 <a href="#" class="menu-item">Bình luận</a>
                 <ul class="submenu">
-                    <li><a href="#">Duyệt bình luận</a></li>
-                    <li><a href="#">Xóa bình luận</a></li>
+                    <li><a href="index.php?role=admin&act=Comment">bình luận</a></li>
                 </ul>
             </li>
             <li>
@@ -46,15 +45,13 @@
                 <ul class="submenu">
                     <li><a href="index.php?role=admin&act=Order">Xem đơn hàng</a></li>
                     <li><a href="#">Xác nhận đơn hàng</a></li>
-                    <li><a href="#">Xóa đơn hàng</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#" class="menu-item">Thống kê</a>
                 <ul class="submenu">
-                    <li><a href="#">Doanh thu</a></li>
-                    <li><a href="#">Lợi nhuận</a></li>
-                    <li><a href="#">Sản phẩm bán chạy</a></li>
+                    <li><a href="index.php?role=admin&act=Statistical">Tổng Quan</a></li>
+                    <li><a href="index.php?role=admin&act=BestSelling">Sản phẩm bán chạy</a></li>
                 </ul>
             </li>
             <li>

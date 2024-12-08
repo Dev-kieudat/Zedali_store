@@ -99,8 +99,12 @@
 <?php include_once VIEW . "Client/base/header.php" ?>
  <div class="container">
         <div class="navigation">
-            <ul>    
+            <ul>
+                <li><a href="index.php?act=Order">Đơn Hàng Của tôi</a></li>
                 <li><a href="index.php?act=ChangeInforForm&id=<?= $_SESSION['user']['id'] ?>">Sửa Thông Tin</a></li>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] == "admin") : ?>
+                <li><a href="<?= ADMIN_URL ?>">Trang Quản trị</a></li>
+                <?php endif; ?>
                 <li><a href="index.php?act=Logout">Đăng xuất</a></li>
             </ul>
         </div>

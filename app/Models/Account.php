@@ -49,7 +49,8 @@ class Account
     }
 
     // Tìm một bản ghi theo ID
-    public function find($id) {
+    public function find($id)
+    {
         $sql = "SELECT * FROM users WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
@@ -80,7 +81,8 @@ class Account
     }
 
     // Cập nhật một bản ghi
-    public function update($id, $data) {
+    public function update($id, $data)
+    {
         // Nếu không có mật khẩu mới, giữ mật khẩu cũ
         if (empty($data['password'])) {
             unset($data['password']); // Không truyền mật khẩu nếu không thay đổi
@@ -88,12 +90,12 @@ class Account
             // Mã hóa mật khẩu mới
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         }
-    
+
         // Kiểm tra xem tất cả các trường bắt buộc có tồn tại trong $data hay không
         if (!isset($data['email'], $data['fullname'], $data['phone'], $data['role'], $data['status'])) {
             throw new Exception("Thiếu thông tin bắt buộc.");
         }
-    
+
         // Chuẩn bị câu lệnh SQL để cập nhật thông tin người dùng
         $sql = "UPDATE users SET 
                     email = :email, 
@@ -101,13 +103,13 @@ class Account
                     phone = :phone, 
                     role = :role,
                     address = :address, 
-                    status = :status" 
-                    . (isset($data['password']) ? ", password = :password" : "") . 
-                " WHERE id = :id";
-    
+                    status = :status"
+            . (isset($data['password']) ? ", password = :password" : "") .
+            " WHERE id = :id";
+
         // Chuẩn bị câu lệnh SQL
         $stmt = $this->pdo->prepare($sql);
-    
+
         // Liên kết các tham số với các giá trị tương ứng
         $stmt->bindValue(':email', $data['email']);  // Chắc chắn đúng tên trường
         $stmt->bindValue(':fullname', $data['fullname']);  // Chắc chắn đúng tên trường
@@ -115,15 +117,15 @@ class Account
         $stmt->bindValue(':address', $data['address']);
         $stmt->bindValue(':role', $data['role']);
         $stmt->bindValue(':status', $data['status']);
-        
+
         // Liên kết mật khẩu (nếu có thay đổi)
         if (isset($data['password'])) {
             $stmt->bindValue(':password', $data['password']);
         }
-    
+
         // Liên kết ID người dùng cần cập nhật
         $stmt->bindValue(':id', $id);
-    
+
         // Thực thi câu lệnh SQL và kiểm tra lỗi
         if ($stmt->execute()) {
             return true;
@@ -133,9 +135,9 @@ class Account
             return false;
         }
     }
-    
-    
-    
+
+
+
 
     public function getUserByEmail($email)
     {
@@ -156,22 +158,30 @@ class Account
 
     // Phương thức đăng nhập
     public function login($email, $password)
-{
-    // Lấy thông tin người dùng từ CSDL qua email
-    $user = $this->getUserByEmail($email);
+    {
+        // Lấy thông tin người dùng từ CSDL qua email
+        $user = $this->getUserByEmail($email);
 
-    // Kiểm tra nếu người dùng tồn tại
-    if ($user) {
-        // Nếu mật khẩu khớp, trả về thông tin người dùng
-        if (password_verify($password, $user['password'])) {
-            return $user;  // Mật khẩu đúng, trả về thông tin người dùng
+        // Kiểm tra nếu người dùng tồn tại
+        if ($user) {
+            // Nếu mật khẩu khớp, trả về thông tin người dùng
+            if (password_verify($password, $user['password'])) {
+                return $user;  // Mật khẩu đúng, trả về thông tin người dùng
+            } else {
+                // Nếu mật khẩu sai
+                return null;  // Mật khẩu không đúng, trả về null
+            }
         } else {
-            // Nếu mật khẩu sai
-            return null;  // Mật khẩu không đúng, trả về null
+            // Nếu không tìm thấy người dùng với email này
+            return null;  // Trả về null nếu không tìm thấy người dùng
         }
-    } else {
-        // Nếu không tìm thấy người dùng với email này
-        return null;  // Trả về null nếu không tìm thấy người dùng
     }
-}
+
+    public function getUserByName($name)
+    {
+        $sql = "SELECT * FROM users WHERE fullname = :name LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['name' => $name]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

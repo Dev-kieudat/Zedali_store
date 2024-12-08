@@ -22,9 +22,10 @@
     .main {
         display: flex;
         justify-content: center;  /* Center horizontally */
-        align-items: center;      /* Center vertically */
-        min-height: 100vh;        /* Full viewport height */
-        padding: 20px;            /* Add padding for spacing */
+        align-items: center;
+        height: 800px;      /* Center vertically */     /* Full viewport height */
+        padding: 20px;
+        margin-top: -170px;      /* Add padding for spacing */
     }
 
     form {

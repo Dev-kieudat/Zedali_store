@@ -119,7 +119,7 @@ class Product
         $stmt = $this->pdo->prepare($sql); // Chuẩn bị câu lệnh SQL
         return $stmt->execute(['id' => $id]); // Thực thi với tham số ID sản phẩm
     }
-    
+
     // Phương thức tăng số lượng view của một sản phẩm
     public function incrementView($id)
     {
@@ -129,7 +129,8 @@ class Product
         return $stmt->execute();
     }
 
-    public function topSell(){
+    public function topSell()
+    {
         $sql = "SELECT * FROM products ORDER BY view DESC LIMIT 4";
 
         // Chuẩn bị câu lệnh
@@ -142,20 +143,21 @@ class Product
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function updateView($id) {
+    function updateView($id)
+    {
         try {
             // Tạo câu lệnh SQL để cập nhật số lượt xem
             $sql = "UPDATE products SET view = view + 1 WHERE id = :id";
-            
+
             // Chuẩn bị truy vấn
             $stmt = $this->pdo->prepare($sql);
-    
+
             // Gán giá trị cho tham số
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    
+
             // Thực thi truy vấn
             $stmt->execute();
-    
+
             // Kiểm tra kết quả
             if ($stmt->rowCount() > 0) {
                 return true; // Thành công
@@ -167,5 +169,13 @@ class Product
             error_log("Error updating product view: " . $e->getMessage());
             return false;
         }
+    }
+
+    public function getBestSellingProducts()
+    {
+        $sql = "SELECT p.id, p.name, p.price, p.image, SUM(od.quantity) AS total_sold FROM products p JOIN order_details od ON p.id = od.product_id GROUP BY p.id, p.name, p.price, p.image ORDER BY total_sold DESC LIMIT 10";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

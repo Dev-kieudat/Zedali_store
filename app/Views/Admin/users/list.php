@@ -99,3 +99,4 @@
         </div>
     </div>
 </div>
+<?php include_once VIEW . "Admin/base/footer.php" ?>

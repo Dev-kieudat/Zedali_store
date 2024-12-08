@@ -56,20 +56,25 @@ class Order
 
     public function createOrderDetail($data)
     {
-        $sql = "INSERT INTO order_details(order_id, product_id, price, quantity) 
-                VALUES(:order_id, :product_id, :price, :quantity)";
+        $sql = "INSERT INTO order_details(order_id, product_id, product_name, price, quantity) 
+                VALUES(:order_id, :product_id, :product_name, :price, :quantity)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);
     }
 
     public function allOrderDetail($orderId)
     {
-        $sql = "SELECT * FROM order_details WHERE order_id = :order_id";
+        $sql = "SELECT od.product_id, p.name, od.price, od.quantity 
+                FROM order_details od
+                JOIN products p ON p.id = od.product_id
+                WHERE od.order_id = :order_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    
 
     public function updateOrderStatus($orderId, $status)
     {
@@ -79,4 +84,33 @@ class Order
         $stmt->bindParam(':id', $orderId, PDO::PARAM_INT);
         $stmt->execute();
     }
+    public function getOrdersByUserId($userId) {
+        $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
+    public function cancelOrder($orderId)
+{
+    // SQL query để cập nhật trạng thái của đơn hàng thành 'canceled'
+    $sql = "UPDATE orders SET status = :status WHERE id = :order_id";
+    
+    // Chuẩn bị câu lệnh
+    $stmt = $this->pdo->prepare($sql);
+    
+    // Gán giá trị cho các tham số
+    $status = 'canceled';
+    $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+    $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
+    
+    // Thực thi câu lệnh
+    if ($stmt->execute()) {
+        return true; // Nếu cập nhật thành công
+    } else {
+        return false; // Nếu có lỗi
+    }
+}
 }

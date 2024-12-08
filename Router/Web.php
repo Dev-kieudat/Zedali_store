@@ -9,7 +9,9 @@ $controllerAdmin = [
     'AdminCategoryController',
     'AdminUserController',
     'AdminProductController',
-    'AdminOrderController'
+    'AdminOrderController',
+    'AdminCommentController',
+    'AdminStatisticalController',
 ];
 foreach ($controllerAdmin as $controllerName) {
     $$controllerName = new $controllerName;
@@ -26,7 +28,9 @@ $controllerClient = [
     'DetailController',
     'CartController',
     'CheckOutController',
-    'ChangeInformationController'
+    'ChangeInformationController',
+    'OrdersController',
+    'CommentController'
 ];
 foreach ($controllerClient as $controllerName) {
     $$controllerName = new $controllerName;
@@ -52,6 +56,9 @@ if (!isset($role)) {
         'CheckOut' => $CheckOutController->checkOut(),
         'ChangeInforForm' => $ChangeInformationController->UpdateForm(),
         'ChangeInformation' => $ChangeInformationController->update($id),
+        'Order' => $OrdersController->index(),
+        'CancelOrder' => $OrdersController->cancel($id),
+        'AddComment' => $CommentController->addComment(),
         default => $HomeController->index()
     };
 }
@@ -78,7 +85,11 @@ if (isset($role) && $role == 'admin') {
         'OrderDetail' => $AdminOrderController->detail(),
         'OrderStatus' => $AdminOrderController->status(),
         'UpdateOrderStatus' => $AdminOrderController->updateStatus(),
-        default => include_once VIEW . "Admin/base/main.php"
+        'Comment' => $AdminCommentController->index(),
+        'DeleteComment' => $AdminCommentController->delete(),
+        'Statistical' => $AdminStatisticalController->index(),
+        'BestSelling' => $AdminStatisticalController->bestselling(),
+        default => include_once VIEW . "Admin/wellcome.php"
     };
 }
 ?>
